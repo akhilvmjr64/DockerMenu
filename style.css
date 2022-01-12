@@ -1,0 +1,94 @@
+/* main style sheet */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css");
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+*{
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    text-decoration: none;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+}
+nav{
+    background-color: rgb(147, 212, 255);
+    font-weight: bolder;
+    font-size: xx-large;
+    padding: 20px;
+    text-align: center;
+}
+.main_menu{
+    margin: 30px 0px;
+    text-align: center;
+    justify-content: center;
+    justify-items: center;
+    width: 100%;
+    columns: 2;
+}
+.menu{
+    width: fit-content;
+    margin: auto;
+    width: fit-content;
+    margin-bottom: 30px;
+    padding: 30px;
+    width: 70%;
+    border: 1px solid rgb(194, 194, 194);
+    transition: 300ms;
+    font-size: large;
+    break-inside: avoid;
+    break-after: avoid;
+    break-before: avoid;
+}
+.heading{
+    font-size: x-large;
+    
+}
+.heading:hover{
+    width: fit-content;
+    color: rgb(147, 212, 255);
+}
+li{
+    text-align: left;
+    font-size: medium;
+}
+li > a:hover{
+    text-decoration: underline;
+    text-shadow: rgb(147, 212, 255);
+}
+.menu:hover{
+    background-color: rgb(245, 245, 245);
+}
+.error, .success{
+    position: fixed;
+    background-color: rgb(255, 157, 157);
+    width: fit-content;
+    max-width: 50%;
+    bottom: 0px;
+    padding: 10px;
+    margin: 10px;
+}
+.success{
+    background-color: rgb(161, 255, 161);
+}
+tr:first-child {
+    background-color: rgb(147, 212, 255);
+    font-weight: bolder;
+}
+td{
+    padding: 4px;
+    border: 1px solid gray;
+}
+table{
+    height: fit-content;
+    margin: auto;
+    width: fit-content;
+}
+.terminal{
+    padding: 20px;
+    margin: 20px;
+    background-color: black;
+    border-radius: 20px;
+}
+.terminal pre{
+    font-family: 'Roboto Mono', monospace;
+    color: white;
+}

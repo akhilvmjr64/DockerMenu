@@ -1,0 +1,25 @@
+#!/home/akhil/anaconda3/bin/python
+print("Content-type: text/html\n")
+from addPath import addPath
+addPath()
+import form
+import variables, subprocess, cgi, options
+options.nav('docker')
+variables.style("../style.css")
+variables.style("../form.css")
+imagesList=subprocess.getstatusoutput("sudo docker ps -a | awk '{print $1\":\"$NF}'")
+if(imagesList[0]==0):
+    print("<div class='form'>")
+    print("<form>")
+    print("<h1>List of All Containers</h1>")
+    print("<table>")
+    for i in imagesList[1].split("\n"):
+        print("<tr>")
+        for j in i.split(":"):
+            print("<td>",j,"</td>")
+        print("</tr>")
+    print("</table>")
+    print("</form>")
+    print("</div>")
+else:
+    print("<div class='error'>Failed to list images</div>")

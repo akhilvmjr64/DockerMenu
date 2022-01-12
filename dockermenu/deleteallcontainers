@@ -1,0 +1,27 @@
+#!/home/akhil/anaconda3/bin/python
+print("Content-type: text/html\n")
+from addPath import addPath
+addPath()
+import form
+import variables, subprocess, cgi, options
+options.nav('docker')
+variables.style("../style.css")
+variables.style("../form.css")
+out=subprocess.getstatusoutput("sudo docker rm -f `sudo docker ps -aq`")
+out1=subprocess.getstatusoutput("sudo docker ps -aq")
+if out[0]==0:
+    print("<div class='success'>")
+    print("Deleted containers : <br>",out[1])
+    print("</div>")
+else:
+    if len(out1)!=0:
+        print("<div class='error'>")
+        print("No containers are running start a container to delete the containers")
+        print("</div>")
+    else:
+        print("<div class='error'>")
+        print(out[1])
+        print("</div>")
+f=form.form()
+f.heading="Delete All Containers"
+f.out()

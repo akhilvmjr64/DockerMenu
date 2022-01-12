@@ -1,0 +1,26 @@
+#!/home/akhil/anaconda3/bin/python
+print("Content-type: text/html\n")
+from addPath import addPath
+addPath()
+import form
+import variables, subprocess, cgi, options
+options.nav('docker')
+variables.style("../style.css")
+variables.style("../form.css")
+store=cgi.FieldStorage()
+if store.getvalue('image'):
+    image=store.getvalue('image')
+    out=subprocess.getstatusoutput("sudo docker pull {0}".format(image))
+    if out[0]==0:
+        print("<div class='success'>")
+        print("Pulled the docker image : <br>",out[1])
+        print("</div>")
+    else:
+        print("<div class='error'>")
+        print(out[1])
+        print("</div>")
+imagesList=subprocess.getoutput("sudo docker images | awk '{print $1\":\"$2}'").split('\n')
+f=form.form()
+f.heading="Pull Docker Image"
+f.params={'Image Name':{'type':'text','name':'image'}}
+f.out()

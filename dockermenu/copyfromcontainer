@@ -1,0 +1,29 @@
+#!/home/akhil/anaconda3/bin/python
+print("Content-type: text/html\n")
+from addPath import addPath
+addPath()
+import form
+import variables, subprocess, cgi, options
+options.nav('docker')
+variables.style("../style.css")
+variables.style("../form.css")
+runningContainers=subprocess.getstatusoutput("sudo docker ps -a | awk '{print $NF}'")
+store=cgi.FieldStorage()
+if store.getvalue('container') and store.getvalue('dest') and store.getvalue('src'):
+    container=store.getvalue('container')
+    dest=store.getvalue('dest')
+    src=store.getvalue('src')
+    out=subprocess.getstatusoutput("sudo docker cp {1}:{0} {2}".format(src,container,dest))
+    if out[0]==0:
+        print("<div class='success'>")
+        print("Copied file from container to {0}".format(dest))
+        print("</div>")
+    else:
+        print("<div class='error'>")
+        print(out[1])
+        print("</div>")
+f=form.form()
+f.heading="Copy file from a Container"
+f.params={"Container":{"type":"select","name":"container","values":runningContainers[1].split("\n")},"Source Path":{"type":"text","name":"src"}, "Destination Path":{"type":"text","name":"dest"}}
+f.submit="stop"
+f.out()

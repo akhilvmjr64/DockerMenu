@@ -1,0 +1,27 @@
+#!/home/akhil/anaconda3/bin/python
+print("Content-type: text/html\n")
+from addPath import addPath
+addPath()
+import form
+import variables, subprocess, cgi, options
+options.nav('docker')
+variables.style("../style.css")
+variables.style("../form.css")
+runningContainers=subprocess.getstatusoutput("sudo docker ps -a | awk '{print $NF}'")
+store=cgi.FieldStorage()
+if store.getvalue('container'):
+    container=store.getvalue('container')
+    out=subprocess.getstatusoutput("sudo docker stop {0}".format(container))
+    if out[0]==0:
+        print("<div class='success'>")
+        print("Stopped container with name : <br>",out[1])
+        print("</div>")
+    else:
+        print("<div class='error'>")
+        print(out[1])
+        print("</div>")
+f=form.form()
+f.heading="Stop a Container"
+f.params={"Container":{"type":"select","name":"container","values":runningContainers[1].split("\n")}}
+f.submit="stop"
+f.out()

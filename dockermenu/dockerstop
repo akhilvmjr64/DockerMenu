@@ -1,0 +1,17 @@
+#!/home/akhil/anaconda3/bin/python
+print("Content-type: text/html\n")
+from addPath import addPath
+addPath()
+import form
+import variables, subprocess, cgi, options
+options.nav('docker')
+variables.style("../style.css")
+variables.style("../form.css")
+a=subprocess.getstatusoutput("sudo systemctl stop docker")
+if(a[0]==0):
+    print("<div class='success'>Stopped docker service successfully</div>")
+else:
+    print("<div class='error'>Failed to stop docker service</div>")
+f=form.form()
+f.heading="Stop Docker Service"
+f.out()

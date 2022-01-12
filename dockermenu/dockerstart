@@ -1,0 +1,17 @@
+#!/home/akhil/anaconda3/bin/python
+print("Content-type: text/html\n")
+from addPath import addPath
+addPath()
+import form
+import variables, subprocess, cgi, options
+options.nav('docker')
+variables.style("../style.css")
+variables.style("../form.css")
+a=subprocess.getstatusoutput("sudo systemctl start docker")
+if(a[0]==0):
+    print("<div class='success'>Started docker service successfully</div>")
+else:
+    print(f"<div class='error'>Docker service failed to start: {a[1]}</div>")
+f=form.form()
+f.heading="Start Docker Service"
+f.out()

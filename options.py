@@ -9,7 +9,7 @@ def nav(inp):
         <a href="{cgiRoute}" style="position: absolute; left: 10px;">
         <i class="bi bi-house"></i>
         </a>
-        <a href="/cgi-bin/{inp}">{inp.capitalize()}</a>
+        <a href="{cgiRoute}/{inp}">{inp.capitalize()}</a>
         </nav>
     """.format(inp.upper()))
 def output(platform):

@@ -1,0 +1,22 @@
+#!/home/akhil/anaconda3/bin/python
+print("Content-type: text/html\n")
+# this is the home page where the main menu will be displayed
+from variables import values
+from env import cgiRoute
+menu_main=values()[1]
+print(f"""
+<nav>
+<a href="{cgiRoute}">Home</a>
+</nav>
+""")
+print("<div class='main_menu'>")
+for i  in menu_main:
+    print("<div class='menu'>")
+    print("<h2><a class='heading' href='{0}'>{1}</a></h2>".format(i,i.upper()))
+    print("<ul>")
+    for j in menu_main[i]:
+        print("<li><a href='{2}menu/{0}'>{1}</a></li>".format(menu_main[i][j],j,i))
+    print("</ul")
+    print("<br>")
+    print("</div></a>")
+print("</div>")

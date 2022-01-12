@@ -1,0 +1,3 @@
+#!/home/akhil/anaconda3/bin/python
+import options
+options.output('docker')
